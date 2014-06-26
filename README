@@ -1,8 +1,8 @@
 This is a personal project, not endorsed by my employer.
 
-midi-misc
-=========
-Some MIDI utilities for Linux.
+midi-dump-tools
+===============
+A collection of tools that dump MIDI to a variety of formats.
 
 Adam Goode, June 2014
 
