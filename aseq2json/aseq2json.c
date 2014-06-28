@@ -112,6 +112,11 @@ static void subscribe(snd_seq_t* seq, int client, int port,
     active_ports = g_hash_table_new(NULL, NULL);
     g_hash_table_insert(active_clients, client_key, active_ports);
   }
+  // Check for dup. This can happen from hotplugging, when we get the
+  // subscription after initial scan.
+  if (g_hash_table_contains(active_ports, port_key))
+    return;
+  // Insert the port.
   g_hash_table_insert(active_ports, port_key, NULL);
 
   // Announce the new port.
