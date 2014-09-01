@@ -17,5 +17,5 @@ Installing dependencies on Debian/Ubuntu:
  apt-get install gcc make libasound2-devel libglib2.0-dev libjson-glib-dev
 
 Installing dependencies on Fedora:
- yum install gcc make 'pkg-config(alsa)' 'pkg-config(glib-2.0)' 'pkg-config(json-glib-1.0)'
+ yum install gcc make 'pkgconfig(alsa)' 'pkgconfig(glib-2.0)' 'pkgconfig(json-glib-1.0)'
 
