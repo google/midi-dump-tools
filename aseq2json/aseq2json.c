@@ -431,13 +431,13 @@ static gpointer event_loop(gpointer data) {
 			  g_hash_table_lookup(s->active_clients,
 					      GINT_TO_POINTER(client)));
 	break;
-   
+
       case SND_SEQ_EVENT_CLIENT_EXIT:
 	deactivate_client(e->ev.data.addr.client, s->generator, s->json_node,
 			  &e->m, &e->r, s->out, s->active_clients);
 	break;
       }
-    } else {	  
+    } else {
       obj = json_object_new();
       add_json_event(obj, &e->m, &e->r, &e->ev);
       consume_json_object(s->generator, s->json_node, obj, s->out);
