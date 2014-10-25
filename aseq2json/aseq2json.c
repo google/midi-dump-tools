@@ -95,7 +95,10 @@ static void subscribe(snd_seq_t* seq, int client, int port,
   snd_seq_port_subscribe_alloca(&subs);
   snd_seq_port_subscribe_set_sender(subs, &sender);
   snd_seq_port_subscribe_set_dest(subs, &dest);
-  snd_seq_subscribe_port(seq, subs);
+  int err = snd_seq_subscribe_port(seq, subs);
+  // TODO(agoode): Detect and recover from temporary error here.
+  if (err < 0)
+    return;
 
   // Don't record or announce the announce port.
   if ((client == SND_SEQ_CLIENT_SYSTEM) &&
