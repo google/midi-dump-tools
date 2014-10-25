@@ -448,8 +448,6 @@ static gpointer event_loop(gpointer data) {
 }
 
 int main(void) {
-  g_type_init();
-
   state s;
   s.q = g_async_queue_new();
   s.active_clients =
