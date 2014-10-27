@@ -178,7 +178,6 @@ static void add_channel_note_velocity(JsonObject* obj,
 static void add_control_1(JsonObject* obj,
 			  const snd_seq_ev_ctrl_t* control) {
   json_object_set_int_member(obj, "channel", control->channel);
-  json_object_set_int_member(obj, "param", control->param);
   json_object_set_int_member(obj, "value", control->value);
 }
 
