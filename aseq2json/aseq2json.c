@@ -500,11 +500,16 @@ int main(void) {
   snd_seq_client_info_alloca(&client_info);
   snd_seq_port_info_alloca(&port_info);
   while (true) {
-    queue_entry* entry = g_slice_new(queue_entry);
     snd_seq_event_t* ev;
-    if (snd_seq_event_input(s.seq, &ev) < 0)
+    int i = snd_seq_event_input(s.seq, &ev);
+    if (i == -ENOSPC) {
+      g_warning("snd_seq_event_input: lost event");
+      continue;
+    } else if (i < 0) {
       // TODO(agoode): reinitialize?
-      g_error("failure returned from snd_seq_event_input");
+      g_error("failure returned from snd_seq_event_input: %s", snd_strerror(i));
+    }
+    queue_entry* entry = g_slice_new(queue_entry);
     entry->ev = *ev;
 
     // Get times.
